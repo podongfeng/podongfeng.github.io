@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>25匹马 | Podongfeng</title>
+  <title>String.valueOf方法 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="智力题">
+  <meta name="description" content="String.valueOf方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="25匹马">
-<meta property="og:url" content="http://yoursite.com/2015/02/26/25horses/">
+<meta property="og:title" content="String.valueOf方法">
+<meta property="og:url" content="http://yoursite.com/2015/03/01/string_valueof/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="智力题">
-<meta property="og:image" content="http://7vzpo6.com1.z0.glb.clouddn.com/horse.jpg">
+<meta property="og:description" content="String.valueOf方法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="25匹马">
-<meta name="twitter:description" content="智力题">
+<meta name="twitter:title" content="String.valueOf方法">
+<meta name="twitter:description" content="String.valueOf方法">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -148,15 +147,15 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-25horses" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-string_valueof" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/02/26/25horses/" class="article-date">
-  	<time datetime="2015-02-26T13:55:33.000Z" itemprop="datePublished">2月 26 2015</time>
+      <a href="/2015/03/01/string_valueof/" class="article-date">
+  	<time datetime="2015-02-28T16:09:18.000Z" itemprop="datePublished">3月 1 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/智力题/">智力题</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
 
     </div>
   
@@ -169,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      25匹马
+      String.valueOf方法
     </h1>
   
 
@@ -177,11 +176,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/horse.jpg" alt="马到成功"></p>
-<p>偶然看到个有意思的智力题，和大家一起讨论：<br><strong>25匹马，要找跑的最快的前三，每轮可以有5匹马赛跑，只能记录先后，不能记录时间，最少需要跑多少轮？</strong></p>
-<a id="more"></a>
-<p>目前想到的解法：<br><strong><br>首先分5组，赛5轮，去掉每组最后两匹，剩15匹；<br>然后5组第一名一起赛一轮，去掉最慢的两组，因为前面至少有3匹比这两组的都快；<br>此时剩下9匹，最快的一匹已经产生，<br>还剩8匹，再淘汰第3组的第二，三两匹，<br>第2组的第三匹（前面至少有3匹，故淘汰），<br>剩下5匹，赛一轮，得到最快的两匹即可。
-</strong></p>
+        <p>今天在排查问题的时候发现String.valueOf 的一个有意思的问题：</p>
+<p>第一种情况：</p>
+<figure class="highlight java"><pre><div class="line">String.valueOf(<span class="keyword">null</span>);</div></pre></figure>
+
+<p>第二种情况：</p>
+<figure class="highlight java"><pre><div class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();  </div><div class="line">String a = String.valueOf(map.get(<span class="string">"a"</span>));</div></pre></figure>
+
+<p><strong>第一种情况会报空指针异常，第二种情况不会报异常，只是得到一个null。</strong></p>
+<p>上网查了一下，原因如下：<br><a id="more"></a><br>String.valueOf方法有好几个重载方法，但是由于null不可能赋值给基本数据类型，所以只剩下2个备选的方法：String valueOf(char data[]) 和 String valueOf(Object obj)。<br>查看源码可以看到String valueOf(Object obj)进行了判空，而String valueOf(char data[])没有。所以很明显，第一种情况调用了String valueOf(char data[])，所以是报了空指针异常；而第二种情况下，调用了String valueOf(char data[])，所以没有报。<br>null对于String valueOf(char data[]) 和 String valueOf(Object obj)的参数都是适用的，那么java如何选择：<br>首先，对于第二种情况，很容易理解，由于map指定了泛型，所以从这个map取出来的肯定是一个Object 类型的参数，肯定会调用String valueOf(Object obj)方法。<br>对于第一种情况，java会选取精确度最高的一种重载方法。如果对于某个参数，String valueOf(char data[])可以适用的话，String valueOf(Object obj)是肯定可以适用的，所以String valueOf(char data[])的精确度就比String valueOf(Obect obj)的精确度要高，null同时适用于这两个方法，所以java会选取精确度较高的一个来执行。</p>
 
       
     </div>
@@ -190,18 +193,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/03/01/string_valueof/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          String.valueOf方法
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/02/23/wolf_and_sheep/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">猎人，羊，狼，白菜</div>
+    <a href="/2015/02/26/25horses/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">25匹马</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -230,7 +224,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="25horses" data-title="25匹马" data-url="http://yoursite.com/2015/02/26/25horses/"></div>
+	<div class="ds-thread" data-thread-key="string_valueof" data-title="String.valueOf方法" data-url="http://yoursite.com/2015/03/01/string_valueof/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

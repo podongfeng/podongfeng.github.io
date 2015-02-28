@@ -149,6 +149,61 @@
 </nav>
       
   
+    <article id="post-string_valueof" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/01/string_valueof/" class="article-date">
+  	<time datetime="2015-02-28T16:09:18.000Z" itemprop="datePublished">3月 1 2015</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/01/string_valueof/">String.valueOf方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在排查问题的时候发现String.valueOf 的一个有意思的问题：</p>
+<p>第一种情况：</p>
+<figure class="highlight java"><pre><div class="line">String.valueOf(<span class="keyword">null</span>);</div></pre></figure>
+
+<p>第二种情况：</p>
+<figure class="highlight java"><pre><div class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();  </div><div class="line">String a = String.valueOf(map.get(<span class="string">"a"</span>));</div></pre></figure>
+
+<p><strong>第一种情况会报空指针异常，第二种情况不会报异常，只是得到一个null。</strong></p>
+<p>上网查了一下，原因如下：<br>
+        
+          <p class="article-more-link">
+            <a href="/2015/03/01/string_valueof/#more">more >></a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-25horses" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -343,54 +398,10 @@
 
 
   
-    <article id="post-hello_hexo" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2015/02/19/hello_hexo/" class="article-date">
-  	<time datetime="2015-02-19T08:32:28.000Z" itemprop="datePublished">2月 19 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/使用hexo搭建博客/">使用hexo搭建博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/19/hello_hexo/">【使用hexo搭建博客（一）】Hello Hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天是羊年大年初一。<br>昨天还跟小伙伴说新年要开始写一点技术博客，今天下午利用难得的休闲时光，就在网上找了找博客的框架。本来是想用wordpress的，都看了一些教程了，偶然发现了这个东西——hexo，简单看了一下介绍，发现hexo更加符合我的需求。<br>下面是<a href="http://hexo.io/" target="_blank" rel="external">hexo官网</a>介绍：<br>A fast, simple &amp; powerful blog framework, powered by Node.js.<br>官网的页面和风格和这个介绍同样简洁，感觉也蛮符合现在的趋势。</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2015/02/19/hello_hexo/#more">more >></a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/archives/2015/page/2/">2</a><a class="extend next" rel="next" href="/archives/2015/page/2/">Next &raquo;</a>
+    </nav>
   
 
       <footer id="footer">
