@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【ruby学习笔记】初探ruby | Podongfeng</title>
+  <title>在ubuntu上安装jdk | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初探ruby">
+  <meta name="description" content="在ubuntu上安装jdk">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【ruby学习笔记】初探ruby">
-<meta property="og:url" content="http://yoursite.com/2015/03/01/ruby_first/">
+<meta property="og:title" content="在ubuntu上安装jdk">
+<meta property="og:url" content="http://yoursite.com/2015/03/15/ubuntu_jdk/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="初探ruby">
-<meta property="og:image" content="http://7vzpo6.com1.z0.glb.clouddn.com/ruby.jpg">
+<meta property="og:description" content="在ubuntu上安装jdk">
+<meta property="og:image" content="http://7vzpo6.com1.z0.glb.clouddn.com/ubuntu.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【ruby学习笔记】初探ruby">
-<meta name="twitter:description" content="初探ruby">
+<meta name="twitter:title" content="在ubuntu上安装jdk">
+<meta name="twitter:description" content="在ubuntu上安装jdk">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -148,15 +148,15 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-ruby_first" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-ubuntu_jdk" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/03/01/ruby_first/" class="article-date">
-  	<time datetime="2015-02-28T16:37:39.000Z" itemprop="datePublished">3月 1 2015</time>
+      <a href="/2015/03/15/ubuntu_jdk/" class="article-date">
+  	<time datetime="2015-03-15T07:45:06.000Z" itemprop="datePublished">3月 15 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ruby/">ruby</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdk/">jdk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
 
     </div>
   
@@ -169,7 +169,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【ruby学习笔记】初探ruby
+      在ubuntu上安装jdk
     </h1>
   
 
@@ -177,8 +177,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/ruby.jpg" alt="ruby"><br>之前一直对ruby只停留在听说过的状态，最近有一些闲暇的时间，学习一下ruby，为将来的ruby on rails开发做一些准备。</p>
-<p>ruby由日本的松本行弘（まつもとゆきひろ/Yukihiro Matsumoto）创建于1993年。相对于java这样的大而全的开发语言，ruby可以说是小而美的，非常类似于python，通常这样的语言的代码量只有java的五分之一吧，而且学习起来也比较容易，如果有效提高开发速度。<br><a id="more"></a><br>ruby有很多优秀的特性，如果要说两个最重要的特点，我想我会选择1、完全面向对象；2、非常迅速。<br>  <strong>完全面向对象：</strong>Ruby 的特性与 Smalltalk、Perl 和 Python 类似。Perl、Python 和 Smalltalk 是脚本语言。Smalltalk 是一个真正的面向对象语言。Ruby，与 Smalltalk 一样，是一个完美的面向对象语言。使用 Ruby 的语法比使用 Smalltalk 的语法要容易得多。<br>  <strong>非常迅速：</strong>非常迅速指2方面，执行速度和开发速度。很多人会忽视开发速度，认为开发速度不是很重要，你开发的慢是因为你水平不够。其实在实际的商业环境中，开发速度对于一个公司是至关重要的。其实我们目前很多的软件产品都会有一些瑕疵，但是只要不影响主要功能，公司都会选择先推出产品，后面再去更新版本解决问题，而不是等待所有问题都解决，软件产品看上去很完美再推出。因为软件产品的机会也是转瞬即逝，如果有其他公司也在开发同类产品，先推出就会先获得真实的用户和用户反馈，抢占市场，占据先机。而且开发人员水平好和差是相对的，而且在一个公司中，如果在开发人员成本（薪水）不变的前提下，开发水平基本不会在短期内有大的提升；而开发速度就技术的选择相关，如果选择一项技术能明显提高开发速度，那么为什么不选择它呢？</p>
+        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/ubuntu.jpg" alt="ubuntu"><br>最近需要在阿里云的服务器上运行一些自己的小demo，选择了比较熟悉的ubuntu系统。为了能让这些小工程能顺利运行起来，需要先安装一些javaWeb工程运行的环境软件，今天先记录下怎么安装jdk，以备后期查询。</p>
+<h3 id="1、创建目录">1、创建目录</h3>
+<figure class="highlight bash"><pre><div class="line">mkdir /usr/lib/jvm</div></pre></figure>
+
+<h3 id="2、上传文件">2、上传文件</h3>
+<p>把jdk-7u75-linux-x64.tar.gz文件上传到/usr/lib/jvm目录（实现从oracle网站上下载好）。</p>
+<h3 id="3、转到目录">3、转到目录</h3>
+<figure class="highlight bash"><pre><div class="line"><span class="built_in">cd</span> /usr/lib/jvm</div></pre></figure>
+
+<h3 id="4、解压文件">4、解压文件</h3>
+<figure class="highlight bash"><pre><div class="line">tar zxvf jdk-<span class="number">7</span>u75-linux-x64.tar.gz -C /usr/lib/jvm</div></pre></figure>
+
+<h3 id="5、重命名">5、重命名</h3>
+<figure class="highlight bash"><pre><div class="line">mv jdk1.<span class="number">7.0</span>_75 java</div></pre></figure>
+
+<h3 id="6、环境变量">6、环境变量</h3>
+<figure class="highlight bash"><pre><div class="line">vi ~/.bashrc</div></pre></figure>
+
+<p>在最后增加如下内容：<br>export JAVA_HOME=/usr/lib/jvm/java<br>export JRE_HOME=${JAVA_HOME}/jre<br>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib<br>export PATH=${JAVA_HOME}/bin:$PATH</p>
+<h3 id="7、配置默认JDK版本">7、配置默认JDK版本</h3>
+<figure class="highlight bash"><pre><div class="line">update-alternatives --install /usr/bin/java java /usr/lib/jvm/java/bin/java <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java/bin/javac <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/java/bin/jar <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/javah javah /usr/lib/jvm/java/bin/javah <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/javap javap /usr/lib/jvm/java/bin/javap <span class="number">300</span></div><div class="line">update-alternatives --config java</div></pre></figure>
+
+<p>如果只有1个 JDK可选，提示<br>There is only one alternative in link group java (providing /usr/bin/java): /usr/lib/jvm/java/bin/java<br>无需理会。</p>
+<h3 id="8、测试">8、测试</h3>
+<figure class="highlight bash"><pre><div class="line">java -version</div></pre></figure>
+
+<p>如果能打印出jdk版本1.7.0_75，表示安装成功</p>
 
       
     </div>
@@ -187,18 +212,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/03/15/ubuntu_jdk/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          在ubuntu上安装jdk
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/03/01/string_valueof/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">String.valueOf方法</div>
+    <a href="/2015/03/01/ruby_first/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【ruby学习笔记】初探ruby</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -227,7 +243,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="ruby_first" data-title="【ruby学习笔记】初探ruby" data-url="http://yoursite.com/2015/03/01/ruby_first/"></div>
+	<div class="ds-thread" data-thread-key="ubuntu_jdk" data-title="在ubuntu上安装jdk" data-url="http://yoursite.com/2015/03/15/ubuntu_jdk/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

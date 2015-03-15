@@ -149,6 +149,75 @@
 </nav>
       
   
+    <article id="post-ubuntu_jdk" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/15/ubuntu_jdk/" class="article-date">
+  	<time datetime="2015-03-15T07:45:06.000Z" itemprop="datePublished">3月 15 2015</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdk/">jdk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/15/ubuntu_jdk/">在ubuntu上安装jdk</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/ubuntu.jpg" alt="ubuntu"><br>最近需要在阿里云的服务器上运行一些自己的小demo，选择了比较熟悉的ubuntu系统。为了能让这些小工程能顺利运行起来，需要先安装一些javaWeb工程运行的环境软件，今天先记录下怎么安装jdk，以备后期查询。</p>
+<h3 id="1、创建目录">1、创建目录</h3>
+<figure class="highlight bash"><pre><div class="line">mkdir /usr/lib/jvm</div></pre></figure>
+
+<h3 id="2、上传文件">2、上传文件</h3>
+<p>把jdk-7u75-linux-x64.tar.gz文件上传到/usr/lib/jvm目录（实现从oracle网站上下载好）。</p>
+<h3 id="3、转到目录">3、转到目录</h3>
+<figure class="highlight bash"><pre><div class="line"><span class="built_in">cd</span> /usr/lib/jvm</div></pre></figure>
+
+<h3 id="4、解压文件">4、解压文件</h3>
+<figure class="highlight bash"><pre><div class="line">tar zxvf jdk-<span class="number">7</span>u75-linux-x64.tar.gz -C /usr/lib/jvm</div></pre></figure>
+
+<h3 id="5、重命名">5、重命名</h3>
+<figure class="highlight bash"><pre><div class="line">mv jdk1.<span class="number">7.0</span>_75 java</div></pre></figure>
+
+<h3 id="6、环境变量">6、环境变量</h3>
+<figure class="highlight bash"><pre><div class="line">vi ~/.bashrc</div></pre></figure>
+
+<p>在最后增加如下内容：<br>export JAVA_HOME=/usr/lib/jvm/java<br>export JRE_HOME=${JAVA_HOME}/jre<br>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib<br>export PATH=${JAVA_HOME}/bin:$PATH</p>
+<h3 id="7、配置默认JDK版本">7、配置默认JDK版本</h3>
+<figure class="highlight bash"><pre><div class="line">update-alternatives --install /usr/bin/java java /usr/lib/jvm/java/bin/java <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java/bin/javac <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/java/bin/jar <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/javah javah /usr/lib/jvm/java/bin/javah <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/javap javap /usr/lib/jvm/java/bin/javap <span class="number">300</span></div><div class="line">update-alternatives --config java</div></pre></figure>
+
+<p>如果只有1个 JDK可选，提示<br>There is only one alternative in link group java (providing /usr/bin/java): /usr/lib/jvm/java/bin/java<br>无需理会。</p>
+<h3 id="8、测试">8、测试</h3>
+<figure class="highlight bash"><pre><div class="line">java -version</div></pre></figure>
+
+<p>如果能打印出jdk版本1.7.0_75，表示安装成功</p>
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-ruby_first" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
