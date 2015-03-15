@@ -196,7 +196,9 @@
 <h3 id="6、环境变量">6、环境变量</h3>
 <figure class="highlight bash"><pre><div class="line">vi ~/.bashrc</div></pre></figure>
 
-<p>在最后增加如下内容：<br>export JAVA_HOME=/usr/lib/jvm/java<br>export JRE_HOME=${JAVA_HOME}/jre<br>export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib<br>export PATH=${JAVA_HOME}/bin:$PATH</p>
+<p>在最后增加如下内容：</p>
+<figure class="highlight bash"><pre><div class="line"><span class="keyword">export</span> JAVA_HOME=/usr/lib/jvm/java</div><div class="line"><span class="keyword">export</span> JRE_HOME=<span class="variable">${JAVA_HOME}</span>/jre</div><div class="line"><span class="keyword">export</span> CLASSPATH=.:<span class="variable">${JAVA_HOME}</span>/lib:<span class="variable">${JRE_HOME}</span>/lib</div><div class="line"><span class="keyword">export</span> PATH=<span class="variable">${JAVA_HOME}</span>/bin:<span class="variable">$PATH</span></div></pre></figure>
+
 <h3 id="7、配置默认JDK版本">7、配置默认JDK版本</h3>
 <figure class="highlight bash"><pre><div class="line">update-alternatives --install /usr/bin/java java /usr/lib/jvm/java/bin/java <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/java/bin/javac <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/java/bin/jar <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/javah javah /usr/lib/jvm/java/bin/javah <span class="number">300</span>  </div><div class="line">update-alternatives --install /usr/bin/javap javap /usr/lib/jvm/java/bin/javap <span class="number">300</span></div><div class="line">update-alternatives --config java</div></pre></figure>
 
