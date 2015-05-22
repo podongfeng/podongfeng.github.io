@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>A标签在新窗口打开 | Podongfeng</title>
+  <title>Archives: 2015/5 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="A标签在新窗口打开">
-<meta property="og:type" content="article">
-<meta property="og:title" content="A标签在新窗口打开">
-<meta property="og:url" content="http://yoursite.com/2015/04/02/html_a/">
+  <meta name="description" content="任何伟大的思想和成就，都有一个微不足道的开始">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Podongfeng">
+<meta property="og:url" content="http://yoursite.com/archives/2015/05/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="A标签在新窗口打开">
+<meta property="og:description" content="任何伟大的思想和成就，都有一个微不足道的开始">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A标签在新窗口打开">
-<meta name="twitter:description" content="A标签在新窗口打开">
+<meta name="twitter:title" content="Podongfeng">
+<meta name="twitter:description" content="任何伟大的思想和成就，都有一个微不足道的开始">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -147,15 +147,17 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-html_a" class="article article-type-post" itemscope itemprop="blogPost">
+      
+  
+    <article id="post-python_date_format" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/04/02/html_a/" class="article-date">
-  	<time datetime="2015-04-01T16:18:50.000Z" itemprop="datePublished">4月 2 2015</time>
+      <a href="/2015/05/23/python_date_format/" class="article-date">
+  	<time datetime="2015-05-22T16:19:22.000Z" itemprop="datePublished">5月 23 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/前端/">前端</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期，格式化/">日期，格式化</a></li></ul>
 
     </div>
   
@@ -167,8 +169,8 @@
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      A标签在新窗口打开
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/23/python_date_format/">python中日期时间格式化</a>
     </h1>
   
 
@@ -176,78 +178,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一直做后台相关的东西，前端的接触不多。<br>今天需要一个a标签链接到站外的一个连接，需要在一个新窗口打开，而不是本页面直接跳转。之前没接触过，一下子不知道怎么写，上网查了下，其实也蛮简单的，记录下来：<br><a id="more"></a></p>
-<figure class="highlight bash"><pre><div class="line">&lt;a href=<span class="string">"https://www.baidu.com/"</span> target=<span class="string">"_Blank"</span>&gt;百度&lt;/a&gt;</div></pre></figure>
+        <p>python中,日期时间格式化，可以调用time.strftime(param)方法来方便地实现，通过传入的参数来控制日期时间的格式。</p>
+<h2 id="比较常用的有：">比较常用的有：</h2>
+<p>转化成年月日时分秒，例如20130101151933</p>
+<figure class="highlight bash"><pre><div class="line">time.strftime(<span class="string">'%Y%m%d%H%M%S'</span>)</div></pre></figure>
 
-<p>如果在一个 a 标签内包含一个 target 属性，浏览器将会载入和显示用这个标签的 href 属性命名的、名称与这个目标吻合的框架或者窗口中的文档。如果这个指定名称或 id 的框架或者窗口不存在，浏览器将打开一个新的窗口，给这个窗口一个指定的标记，然后将新的文档载入那个窗口。从此以后，超链接文档就可以指向这个新的窗口。</p>
-<p>有 4 个保留的目标名称用作特殊的文档重定向操作：<br><strong>_blank</strong><br>浏览器总在一个新打开、未命名的窗口中载入目标文档。<br><strong>_self</strong><br>这个目标的值对所有没有指定目标的 a 标签是默认目标，它使得目标文档载入并显示在相同的框架或者窗口中作为源文档。这个目标是多余且不必要的，除非和文档标题 base 标签中的 target 属性一起使用。<br><strong>_parent</strong><br>这个目标使得文档载入父窗口或者包含来超链接引用的框架的框架集。如果这个引用是在窗口或者在顶级框架中，那么它与目标 _self 等效。<br><strong>top</strong><br>这个目标使得文档载入包含这个超链接的窗口，用 _top 目标将会清除所有被包含的框架并将文档载入整个浏览器窗口。<br><strong>提示：</strong><br>这些 target 的所有 4 个值都以下划线开始。任何其他用一个下划线作为开头的窗口或者目标都会被浏览器忽略，因此，不要将下划线作为文档中定义的任何框架 name 或 id 的第一个字符。</p>
 
+
+<p>转化成标准时间格式，例如15:20:40</p>
+<figure class="highlight bash"><pre><div class="line">time.strftime(<span class="string">'%X'</span>)</div></pre></figure>
+
+<p>转换成标准日期格式，例如01/01/14(mm/dd/yy)</p>
+<figure class="highlight bash"><pre><div class="line">time.strftime(<span class="string">'%x'</span>)</div></pre></figure>
+
+
+        
+          <p class="article-more-link">
+            <a href="/2015/05/23/python_date_format/#more">more >></a>
+          </p>
+        
       
     </div>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/2015/05/23/python_date_format/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          python中日期时间格式化
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/03/15/ubuntu_jdk/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">在ubuntu上安装jdk</div>
-      <strong class="article-nav-caption">&gt;</strong>
-    </a>
-  
-</nav>
-
-  
 </article>
 
 
-<div class="share">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
 
 
 
-<div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="html_a" data-title="A标签在新窗口打开" data-url="http://yoursite.com/2015/04/02/html_a/"></div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"true"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
-</div>
 
-
-
+  
+  
 
       <footer id="footer">
   <div class="outer">
