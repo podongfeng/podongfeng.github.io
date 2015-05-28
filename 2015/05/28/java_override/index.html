@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>python中日期时间格式化 | Podongfeng</title>
+  <title>java的override注解 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="python中日期时间格式化">
+  <meta name="description" content="java的override注解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python中日期时间格式化">
-<meta property="og:url" content="http://yoursite.com/2015/05/23/python_date_format/">
+<meta property="og:title" content="java的override注解">
+<meta property="og:url" content="http://yoursite.com/2015/05/28/java_override/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="python中日期时间格式化">
-<meta property="og:image" content="http://7vzpo6.com1.z0.glb.clouddn.com/python.jpg">
+<meta property="og:description" content="java的override注解">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python中日期时间格式化">
-<meta name="twitter:description" content="python中日期时间格式化">
+<meta name="twitter:title" content="java的override注解">
+<meta name="twitter:description" content="java的override注解">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -148,15 +147,15 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-python_date_format" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-java_override" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/05/23/python_date_format/" class="article-date">
-  	<time datetime="2015-05-22T16:19:22.000Z" itemprop="datePublished">5月 23 2015</time>
+      <a href="/2015/05/28/java_override/" class="article-date">
+  	<time datetime="2015-05-28T15:32:10.000Z" itemprop="datePublished">5月 28 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/日期，格式化/">日期，格式化</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/override/">override</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
 
     </div>
   
@@ -169,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      python中日期时间格式化
+      java的override注解
     </h1>
   
 
@@ -177,81 +176,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/python.jpg" alt="python"><br>python中,日期时间格式化，可以调用time.strftime(param)方法来方便地实现，通过传入的参数来控制日期时间的格式。</p>
-<h2 id="比较常用的有：">比较常用的有：</h2>
-<p>转化成年月日时分秒，例如20130101151933</p>
-<figure class="highlight bash"><pre><div class="line">time.strftime(<span class="string">'%Y%m%d%H%M%S'</span>)</div></pre></figure>
-
-
-
-<p>转化成标准时间格式，例如15:20:40</p>
-<figure class="highlight bash"><pre><div class="line">time.strftime(<span class="string">'%X'</span>)</div></pre></figure>
-
-<p>转换成标准日期格式，例如01/01/14(mm/dd/yy)</p>
-<figure class="highlight bash"><pre><div class="line">time.strftime(<span class="string">'%x'</span>)</div></pre></figure>
-
-<a id="more"></a>
-<h2 id="以下是其他一些常用的参数说明：">以下是其他一些常用的参数说明：</h2>
-<p>星期全称</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%A'</span>, time.strftime(<span class="string">'%A'</span>))</div></pre></figure>
-
-<p>星期简称</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%a'</span>, time.strftime(<span class="string">'%a'</span>))</div></pre></figure>
-
-<p>月份全称</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%B'</span>, time.strftime(<span class="string">'%B'</span>))</div></pre></figure>
-
-<p>月份简称</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%b'</span>, time.strftime(<span class="string">'%b'</span>))</div></pre></figure>
-
-<p>标准日期时间格式 mm/dd/yy hh:mm:ss</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%c'</span>, time.strftime(<span class="string">'%c'</span>))</div></pre></figure>
-
-<p>每月的第几天，即日期，2位</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%d'</span>, time.strftime(<span class="string">'%d'</span>))</div></pre></figure>
-
-<p>小时 24小时制</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%H'</span>, time.strftime(<span class="string">'%H'</span>))</div></pre></figure>
-
-<p>每年的第几天</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%j'</span>, time.strftime(<span class="string">'%j'</span>))</div></pre></figure>
-
-<p>分钟</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%M'</span>, time.strftime(<span class="string">'%M'</span>))</div></pre></figure>
-
-<p>月份</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%m'</span>, time.strftime(<span class="string">'%m'</span>))</div></pre></figure>
-
-<p>AM or PM</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%p'</span>, time.strftime(<span class="string">'%p'</span>))</div></pre></figure>
-
-<p>秒</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%S'</span>, time.strftime(<span class="string">'%S'</span>))</div></pre></figure>
-
-<p>每年的第几周，从00开始，把星期日做为第一天</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%U'</span>, time.strftime(<span class="string">'%U'</span>))</div></pre></figure>
-
-<p>星期几 周天为0</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%w'</span>, time.strftime(<span class="string">'%w'</span>))</div></pre></figure>
-
-<p>每年的第几周，从00开始，把星期一做为第一天</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%W'</span>, time.strftime(<span class="string">'%W'</span>))</div></pre></figure>
-
-<p>标准时间串</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%X'</span>, time.strftime(<span class="string">'%X'</span>))</div></pre></figure>
-
-<p>标准日期串</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%x'</span>, time.strftime(<span class="string">'%x'</span>))</div></pre></figure>
-
-<p>4位年份</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%Y'</span>, time.strftime(<span class="string">'%Y'</span>))</div></pre></figure>
-
-<p>2位年份</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%y'</span>, time.strftime(<span class="string">'%y'</span>))</div></pre></figure>
-
-<p>时区</p>
-<figure class="highlight bash"><pre><div class="line">print(<span class="string">'%Z'</span>, time.strftime(<span class="string">'%Z'</span>))</div></pre></figure>
-
+        <p>jdk从1.5开始，就有提供override这个注解，但是1.5却和1.6以及之后的版本有所不同。在1.5，方法的重写可以使用override注解，但是接口和实现类之间，是不能使用override来注解的，这个注解不能用于实现接口的方法。但是在1.6以及以后的版本中，不管是对普通方法的重写和接口的实现类都可以使用。</p>
 
       
     </div>
@@ -260,18 +185,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/05/28/java_override/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          java的override注解
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/04/02/html_a/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">A标签在新窗口打开</div>
+    <a href="/2015/05/23/python_date_format/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python中日期时间格式化</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -300,7 +216,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="python_date_format" data-title="python中日期时间格式化" data-url="http://yoursite.com/2015/05/23/python_date_format/"></div>
+	<div class="ds-thread" data-thread-key="java_override" data-title="java的override注解" data-url="http://yoursite.com/2015/05/28/java_override/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
