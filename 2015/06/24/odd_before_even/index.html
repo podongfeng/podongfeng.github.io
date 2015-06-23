@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>初探SharedPreferences | Podongfeng</title>
+  <title>【剑指offer】调整数组顺序使奇数位于偶数前面 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="初探SharedPreferences">
+  <meta name="description" content="调整数组顺序使奇数位于偶数前面">
 <meta property="og:type" content="article">
-<meta property="og:title" content="初探SharedPreferences">
-<meta property="og:url" content="http://yoursite.com/2015/05/28/android_SharedPreferences/">
+<meta property="og:title" content="【剑指offer】调整数组顺序使奇数位于偶数前面">
+<meta property="og:url" content="http://yoursite.com/2015/06/24/odd_before_even/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="初探SharedPreferences">
-<meta property="og:image" content="http://7vzpo6.com1.z0.glb.clouddn.com/android.jpg">
+<meta property="og:description" content="调整数组顺序使奇数位于偶数前面">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="初探SharedPreferences">
-<meta name="twitter:description" content="初探SharedPreferences">
+<meta name="twitter:title" content="【剑指offer】调整数组顺序使奇数位于偶数前面">
+<meta name="twitter:description" content="调整数组顺序使奇数位于偶数前面">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -148,15 +147,15 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-android_SharedPreferences" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-odd_before_even" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/05/28/android_SharedPreferences/" class="article-date">
-  	<time datetime="2015-05-28T15:49:36.000Z" itemprop="datePublished">5月 28 2015</time>
+      <a href="/2015/06/24/odd_before_even/" class="article-date">
+  	<time datetime="2015-06-23T16:39:28.000Z" itemprop="datePublished">6月 24 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SharedPreferences初步/">SharedPreferences初步</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/剑指offer/">剑指offer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/牛客/">牛客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
 
     </div>
   
@@ -169,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      初探SharedPreferences
+      【剑指offer】调整数组顺序使奇数位于偶数前面
     </h1>
   
 
@@ -177,22 +176,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/android.jpg" alt="android"><br>android开发中，可能需要持久化少量的数据，譬如说一些用户设置的数据，用数据库就有点杀鸡用牛刀了，这时候可以尝试使用SharedPreferences。SharedPreferences是一种轻量级的存储数据的方式，使用xml文件来进行键值对方式的存储，而且使用起来非常轻量和快捷。</p>
-<p>得到SharedPreferences：</p>
-<figure class="highlight bash"><pre><div class="line">SharedPreferences sharedPreferences = </div><div class="line">getSharedPreferences(<span class="string">"usable_sharedPreferences"</span>, Context.MODE_PRIVATE);</div></pre></figure>
-
-<p>SharedPreferences使用一个内部类SharedPreferences.Editor来对数据进行编辑</p>
-<p>得到edit：</p>
-<figure class="highlight bash"><pre><div class="line">SharedPreferences.Editor editor = sharedPreferences.edit();</div></pre></figure>
-
-<p>提交数据：</p>
-<figure class="highlight bash"><pre><div class="line">editor.putString(key, value);</div><div class="line">editor.commit();</div></pre></figure>
-
-<p>查询数据：</p>
-<figure class="highlight bash"><pre><div class="line">String value = sharedPreferences.getString(key, </div><div class="line"><span class="string">"没有找到键："</span> + key + <span class="string">" 对应的值，请检查输入的键！"</span>);</div></pre></figure>
-
-<p>清空数据：</p>
-<figure class="highlight bash"><pre><div class="line">editor.clear().commit();</div></pre></figure>
+        <p>最近在<a href="http://www.nowcoder.com/" target="_blank" rel="external">牛客网</a>刷了一遍剑指offer的题目，感觉题目不难，但是自己在有些算法方面，由于使用的比较少，做起来不是很顺。所以打算重新做一遍，并且要把整个过程记录下来，以便后面再来查阅。<br>就从一道基本的编程题目开始吧。</p>
+<h2 id="调整数组顺序使奇数位于偶数前面">调整数组顺序使奇数位于偶数前面</h2>
+<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。<br><a id="more"></a></p>
+<h2 id="思路">思路</h2>
+<p>看到题目，其实让我想起了冒泡排序和选择排序。整个过程，就是从前开始往后找，发现第一个奇数，把它提到第一个位置；发现第二个奇数，把它提到第二个位置。。。一直到所有奇数都被提前，过程结束。</p>
+<h2 id="代码">代码</h2>
+<figure class="highlight bash"><pre><div class="line">public class Solution {</div><div class="line">    public void reOrderArray(int [] array) {</div><div class="line">        int length = array.length;</div><div class="line">        <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; length - <span class="number">1</span>; i++) {</div><div class="line">            <span class="keyword">for</span> (int j = i; j &lt; length; j++) {</div><div class="line">                <span class="keyword">if</span> (array[j] % <span class="number">2</span> == <span class="number">1</span>) {</div><div class="line">                    int temp = array[j];</div><div class="line">                    <span class="keyword">for</span>(int k=j; k&gt;i; k--){</div><div class="line">                        array[k] = array[k-<span class="number">1</span>];</div><div class="line">                    }</div><div class="line">                    array[i] = temp;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                }</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></figure>
 
 
       
@@ -202,18 +192,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/06/24/odd_before_even/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          【剑指offer】调整数组顺序使奇数位于偶数前面
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/05/28/java_override/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">java的override注解</div>
+    <a href="/2015/05/28/android_SharedPreferences/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初探SharedPreferences</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -242,7 +223,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="android_SharedPreferences" data-title="初探SharedPreferences" data-url="http://yoursite.com/2015/05/28/android_SharedPreferences/"></div>
+	<div class="ds-thread" data-thread-key="odd_before_even" data-title="【剑指offer】调整数组顺序使奇数位于偶数前面" data-url="http://yoursite.com/2015/06/24/odd_before_even/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
