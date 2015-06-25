@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【剑指offer】二进制中1的个数 | Podongfeng</title>
+  <title>【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二进制中1的个数">
+  <meta name="description" content="求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【剑指offer】二进制中1的个数">
-<meta property="og:url" content="http://yoursite.com/2015/06/24/1_nums_in_binary/">
+<meta property="og:title" content="【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
+<meta property="og:url" content="http://yoursite.com/2015/06/26/no_add/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="二进制中1的个数">
+<meta property="og:description" content="求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【剑指offer】二进制中1的个数">
-<meta name="twitter:description" content="二进制中1的个数">
+<meta name="twitter:title" content="【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
+<meta name="twitter:description" content="求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -147,11 +147,11 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-1_nums_in_binary" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-no_add" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/06/24/1_nums_in_binary/" class="article-date">
-  	<time datetime="2015-06-24T15:11:28.000Z" itemprop="datePublished">6月 24 2015</time>
+      <a href="/2015/06/26/no_add/" class="article-date">
+  	<time datetime="2015-06-25T16:29:25.000Z" itemprop="datePublished">6月 26 2015</time>
 </a>
       
       
@@ -168,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【剑指offer】二进制中1的个数
+      【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号
     </h1>
   
 
@@ -176,19 +176,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天介绍的是一道让我印象深刻的题目。说它印象深刻，主要是我第一次看到这道题和解答的时候，激发起了我对算法兴趣，帮我打开了算法世界的大门。</p>
-<h2 id="二进制中1的个数">二进制中1的个数</h2>
-<p>输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。<br><a id="more"></a></p>
+        <p>今天介绍的是一道题目，并不涉及特别高深的算法，但是考验了思维的敏捷，和对突破常规限制的能力。</p>
+<h2 id="求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号</h2>
+<p>写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。<br><a id="more"></a></p>
 <h2 id="思路">思路</h2>
-<p>首先想到的方法是可以逐位与1进行与运算，如果与的结果是1，那么这一位就是1，如果是0，这一位就是0。这时候，这样考虑，先最低位与1进行与操作，然后左移一位，次低位变最低位，继续与1进行与操作，直至结束。看上去很美好，但是没办法解决负数的问题。如果是负数，符号位（最高位）是1，进行左移操作时，前面是补1而不是补0，造成了无限循环，这个数不会变成0。这时换个角度思考，可以不移动目标数n，而是移动1。一开始和最低位与，然后左移一位，变成10，再目标数与运算，如果结果大于0，那么这一位就是1。需要注意的是，由于符号位的1是没有机会没与到的，因为当1不断左移，最高位变成1的时候，已经超过的int的界限，变成了负数了，所以需要在最后的结果加上1。<br>上面的思路是正常能想到的，下面介绍的一种思路，需要脑洞大开，算法效率很高，但是一般人真想不到。</p>
-<h3 id="n和n-1进行与运算，结果就去去掉从最后面开始倒数遇到的第一个1。">n和n-1进行与运算，结果就去去掉从最后面开始倒数遇到的第一个1。</h3>
-<p>仔细想一下，n-1，如果后面是0，必然需要退位，那么就会从后向前遇到的第一个1来借位，这个1变成0，而这个1后面的0全部变成1。注意，这个1后面肯定都是0，可能是几个0，可能没有，但是绝对没有1，不然就不需要借这一位。有了这个结论，就可以把n与n-1做与运算，计算的结果再赋值给n，一次运算就会去掉最后的一个1，直到n为0为止。这种算法，目标数有多少个1就会循环多少次，比如上面的循环32次，效率更高。</p>
+<p>既然不能用四则运算的符号，那么应该可以考虑到使用位运算来解决，那么究竟怎么处理呢？<br>首先考虑，直接2个数进行“异或”运算的结果，1^1=0,0^0=0,1^0=1，那么，我们可以发现，A^B的结果就是A+B不带进位，直接按位相加的结果。<br>接下来考虑进位的部分，直接2个数进行“与”运算的结果，只有1^1=1，其他都是0，刚好跟进位相似，在需要进位的地方才是1，但是，进位是向更高一位进1，所以A&amp;B之后，还需要左移一位，才是需要加上的进位。<br>好了，有了上面的考虑，只要把上面2个结果相加，就是要求的解了。这里还要注意，这2个数不能直接用“+”号相加，还是需要调用本身，进行递归，在这里出现“+”号，就功亏一篑了。<br>哦，差点忘记了，既然产生了递归，就需要结束的条件，其实当B=0的时候，A+B=A，所以在B等于0的时候结束递归即可。</p>
 <h2 id="代码">代码</h2>
-<p>第一种思路：</p>
-<figure class="highlight bash"><pre><div class="line">public class Solution {</div><div class="line">    public static int NumberOf1(int n) {</div><div class="line">        int ans = <span class="number">0</span>;</div><div class="line">        int temp = <span class="number">1</span>;</div><div class="line">        <span class="keyword">while</span> (temp &gt; <span class="number">0</span>) {</div><div class="line">            <span class="keyword">if</span> ((temp & n) &gt; <span class="number">0</span>) {</div><div class="line">                ans++;</div><div class="line">            }</div><div class="line">            temp = temp &lt;&lt; <span class="number">1</span>;</div><div class="line">        }</div><div class="line">        <span class="keyword">if</span>(n &lt; <span class="number">0</span>) {</div><div class="line">            ans++;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
-
-<p>第二种思路：</p>
-<figure class="highlight bash"><pre><div class="line">public class Solution {</div><div class="line">    public static int NumberOf1(int n) {</div><div class="line">        int ans = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (ans = <span class="number">0</span>; n != <span class="number">0</span>; ans++) {</div><div class="line">            n &= (n - <span class="number">1</span>);</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> ans;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+<figure class="highlight bash"><pre><div class="line">class Solution {</div><div class="line">public:</div><div class="line">    int Add(int num1, int num2)</div><div class="line">    {</div><div class="line">        <span class="keyword">if</span> (num2 == <span class="number">0</span>) {</div><div class="line">            <span class="keyword">return</span> num1;</div><div class="line">        }</div><div class="line">        int tmp = num1 ^ num2;</div><div class="line">        int carry = (num1 & num2) &lt;&lt; <span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> Add(tmp, carry);</div><div class="line">    }</div><div class="line">};</div></pre></figure>
 
 
       
@@ -198,18 +192,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/06/26/no_add/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/06/24/odd_before_even/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【剑指offer】调整数组顺序使奇数位于偶数前面</div>
+    <a href="/2015/06/24/1_nums_in_binary/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【剑指offer】二进制中1的个数</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -238,7 +223,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="1_nums_in_binary" data-title="【剑指offer】二进制中1的个数" data-url="http://yoursite.com/2015/06/24/1_nums_in_binary/"></div>
+	<div class="ds-thread" data-thread-key="no_add" data-title="【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号" data-url="http://yoursite.com/2015/06/26/no_add/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
