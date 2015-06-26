@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号 | Podongfeng</title>
+  <title>【剑指offer】跳台阶 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
+  <meta name="description" content="跳台阶">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
-<meta property="og:url" content="http://yoursite.com/2015/06/26/no_add/">
+<meta property="og:title" content="【剑指offer】跳台阶">
+<meta property="og:url" content="http://yoursite.com/2015/06/27/step/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
+<meta property="og:description" content="跳台阶">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
-<meta name="twitter:description" content="求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">
+<meta name="twitter:title" content="【剑指offer】跳台阶">
+<meta name="twitter:description" content="跳台阶">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -147,11 +147,11 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-no_add" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-step" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/06/26/no_add/" class="article-date">
-  	<time datetime="2015-06-25T16:29:25.000Z" itemprop="datePublished">6月 26 2015</time>
+      <a href="/2015/06/27/step/" class="article-date">
+  	<time datetime="2015-06-26T16:21:03.000Z" itemprop="datePublished">6月 27 2015</time>
 </a>
       
       
@@ -168,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号
+      【剑指offer】跳台阶
     </h1>
   
 
@@ -176,13 +176,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天介绍的是一道题目，并不涉及特别高深的算法，但是考验了思维的敏捷，和对突破常规限制的能力。</p>
-<h2 id="求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号">求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号</h2>
-<p>写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。<br><a id="more"></a></p>
+        <p>今天介绍的是一道递归的基础题。递归应该是很多人接触算法的最先遇到的，打好基础，从0起步。</p>
+<h2 id="跳台阶">跳台阶</h2>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。<br><a id="more"></a></p>
 <h2 id="思路">思路</h2>
-<p>既然不能用四则运算的符号，那么应该可以考虑到使用位运算来解决，那么究竟怎么处理呢？<br>首先考虑，直接2个数进行“异或”运算的结果，1^1=0,0^0=0,1^0=1，那么，我们可以发现，A^B的结果就是A+B不带进位，直接按位相加的结果。<br>接下来考虑进位的部分，直接2个数进行“与”运算的结果，只有1^1=1，其他都是0，刚好跟进位相似，在需要进位的地方才是1，但是，进位是向更高一位进1，所以A&amp;B之后，还需要左移一位，才是需要加上的进位。<br>好了，有了上面的考虑，只要把上面2个结果相加，就是要求的解了。这里还要注意，这2个数不能直接用“+”号相加，还是需要调用本身，进行递归，在这里出现“+”号，就功亏一篑了。<br>哦，差点忘记了，既然产生了递归，就需要结束的条件，其实当B=0的时候，A+B=A，所以在B等于0的时候结束递归即可。</p>
+<p>一次可以跳上1级台阶，也可以跳上2级，所以，倒数第2步，可以是离终点1级，也可以离终点2级。那么很容易推导出：S(n) = S(n-1) + S(n-2)【n&gt;2】。<br>n = 1时，S(1) = 1;<br>n = 2时，S(2) = 2。</p>
 <h2 id="代码">代码</h2>
-<figure class="highlight bash"><pre><div class="line">class Solution {</div><div class="line">public:</div><div class="line">    int Add(int num1, int num2)</div><div class="line">    {</div><div class="line">        <span class="keyword">if</span> (num2 == <span class="number">0</span>) {</div><div class="line">            <span class="keyword">return</span> num1;</div><div class="line">        }</div><div class="line">        int tmp = num1 ^ num2;</div><div class="line">        int carry = (num1 & num2) &lt;&lt; <span class="number">1</span>;</div><div class="line">        <span class="keyword">return</span> Add(tmp, carry);</div><div class="line">    }</div><div class="line">};</div></pre></figure>
+<figure class="highlight bash"><pre><div class="line">class Solution {</div><div class="line">public:</div><div class="line">    int jumpFloor(int number) {</div><div class="line">        <span class="keyword">if</span>(number == <span class="number">1</span>) {</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(number == <span class="number">2</span>) {</div><div class="line">            <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            int a = <span class="number">1</span>;</div><div class="line">            int b = <span class="number">2</span>;</div><div class="line">            int ans = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(int i=<span class="number">3</span>; i&lt;=number; i++) {</div><div class="line">                ans = a + b;</div><div class="line">                a = b;</div><div class="line">                b = ans;</div><div class="line">            }</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        }</div><div class="line">    }</div><div class="line">};</div></pre></figure>
 
 
       
@@ -192,18 +192,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/06/27/step/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          【剑指offer】跳台阶
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/06/24/1_nums_in_binary/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【剑指offer】二进制中1的个数</div>
+    <a href="/2015/06/26/no_add/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -232,7 +223,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="no_add" data-title="【剑指offer】求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号" data-url="http://yoursite.com/2015/06/26/no_add/"></div>
+	<div class="ds-thread" data-thread-key="step" data-title="【剑指offer】跳台阶" data-url="http://yoursite.com/2015/06/27/step/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
