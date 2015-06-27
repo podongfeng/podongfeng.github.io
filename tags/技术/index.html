@@ -149,6 +149,53 @@
 </nav>
       
   
+    <article id="post-linux_tomcat" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/27/linux_tomcat/" class="article-date">
+  	<time datetime="2015-06-27T05:55:35.000Z" itemprop="datePublished">6月 27 2015</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tomcat/">tomcat</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/27/linux_tomcat/">在linux上安装tomcat</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/tomcat.jpg" alt="tomcat"><br>在ubuntu或者centos上安装tomcat的简单步骤，记录下来，备忘查询。<br>
+        
+          <p class="article-more-link">
+            <a href="/2015/06/27/linux_tomcat/#more">more >></a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-step" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -575,61 +622,6 @@
         
           <p class="article-more-link">
             <a href="/2015/03/01/ruby_first/#more">more >></a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-string_valueof" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/03/01/string_valueof/" class="article-date">
-  	<time datetime="2015-02-28T16:09:18.000Z" itemprop="datePublished">3月 1 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/03/01/string_valueof/">String.valueOf方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/String_valueOf.png" alt="String.valueOf的2个重载方法"><br>今天在排查问题的时候发现String.valueOf 的一个有意思的问题：</p>
-<p>第一种情况：</p>
-<figure class="highlight java"><pre><div class="line">String.valueOf(<span class="keyword">null</span>);</div></pre></figure>
-
-<p>第二种情况：</p>
-<figure class="highlight java"><pre><div class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();  </div><div class="line">String a = String.valueOf(map.get(<span class="string">"a"</span>));</div></pre></figure>
-
-<p><strong>第一种情况会报空指针异常，第二种情况不会报异常，只是得到一个null。</strong></p>
-<p>上网查了一下，原因如下：<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/03/01/string_valueof/#more">more >></a>
           </p>
         
       
