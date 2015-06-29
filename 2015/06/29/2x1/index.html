@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【剑指offer】变态跳台阶 | Podongfeng</title>
+  <title>【剑指offer】矩形覆盖 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="变态跳台阶">
+  <meta name="description" content="矩形覆盖">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【剑指offer】变态跳台阶">
-<meta property="og:url" content="http://yoursite.com/2015/06/28/super_jump/">
+<meta property="og:title" content="【剑指offer】矩形覆盖">
+<meta property="og:url" content="http://yoursite.com/2015/06/29/2x1/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="变态跳台阶">
+<meta property="og:description" content="矩形覆盖">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【剑指offer】变态跳台阶">
-<meta name="twitter:description" content="变态跳台阶">
+<meta name="twitter:title" content="【剑指offer】矩形覆盖">
+<meta name="twitter:description" content="矩形覆盖">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -147,11 +147,11 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-super_jump" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-2x1" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/06/28/super_jump/" class="article-date">
-  	<time datetime="2015-06-28T03:00:52.000Z" itemprop="datePublished">6月 28 2015</time>
+      <a href="/2015/06/29/2x1/" class="article-date">
+  	<time datetime="2015-06-29T15:22:25.000Z" itemprop="datePublished">6月 29 2015</time>
 </a>
       
       
@@ -168,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【剑指offer】变态跳台阶
+      【剑指offer】矩形覆盖
     </h1>
   
 
@@ -176,13 +176,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天还是介绍一道递推的基础题。顺着前一天“跳台阶”这题的思路，应该也不难解答。</p>
-<h2 id="变态跳台阶">变态跳台阶</h2>
-<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。<br><a id="more"></a></p>
+        <p>今天继续介绍一道递推的题目。</p>
+<h2 id="矩形覆盖">矩形覆盖</h2>
+<p>我们可以用2<em>1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2</em>1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？<br><a id="more"></a></p>
 <h2 id="思路">思路</h2>
-<p>顺着“跳台阶”这题的思路，还是考虑倒数第2步的位置，由于组后1步可以调任意数的台阶，所以倒数第2步的位置就有0到（n-1）这么几种可能，所以得到递推的公式：<br>S(n) = S(0) + S(1) + … + S(n-1)</p>
+<p>考虑最后一个竖着的2x1方块，它有2中可能：1、被一块竖着的2x1填满；2、被2个横着的1x2的后板块填满。其实对于第1种情况，共有F(n-1)中可能；对于第2种情况，共有F(n-2)中可能。所以的到递推公式 F(n) = F(n-2) + F(n-1)。<br>n = 1时，F(1) = 1;<br>n = 2时，F(2) = 2。</p>
 <h2 id="代码">代码</h2>
-<figure class="highlight bash"><pre><div class="line">public class Solution {</div><div class="line">    public int JumpFloorII(int number) {</div><div class="line">    	<span class="keyword">if</span>(number == <span class="number">1</span>) {</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            int sum = <span class="number">1</span>;</div><div class="line">            int ans = <span class="number">1</span>;</div><div class="line">            <span class="keyword">for</span>(int i=<span class="number">2</span>; i&lt;=number; i++) {</div><div class="line">                sum += ans;</div><div class="line">                ans = sum;</div><div class="line">            }</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+<figure class="highlight bash"><pre><div class="line">class Solution {</div><div class="line">public:</div><div class="line">    int rectCover(int number) {</div><div class="line">        <span class="keyword">if</span>(number == <span class="number">1</span>) {</div><div class="line">            <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">        } <span class="keyword">else</span> <span class="keyword">if</span>(number == <span class="number">2</span>) {</div><div class="line">            <span class="keyword">return</span> <span class="number">2</span>;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            int a = <span class="number">1</span>;</div><div class="line">            int b = <span class="number">2</span>;</div><div class="line">            int ans = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(int i=<span class="number">3</span>; i&lt;=number; i++) {</div><div class="line">                ans = a + b;</div><div class="line">                a = b;</div><div class="line">                b = ans;</div><div class="line">            }</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        }</div><div class="line">    }</div><div class="line">};</div></pre></figure>
 
 
       
@@ -192,18 +192,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/06/29/2x1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          【剑指offer】矩形覆盖
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/06/27/linux_tomcat/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">在linux上安装tomcat</div>
+    <a href="/2015/06/28/super_jump/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【剑指offer】变态跳台阶</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -232,7 +223,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="super_jump" data-title="【剑指offer】变态跳台阶" data-url="http://yoursite.com/2015/06/28/super_jump/"></div>
+	<div class="ds-thread" data-thread-key="2x1" data-title="【剑指offer】矩形覆盖" data-url="http://yoursite.com/2015/06/29/2x1/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
