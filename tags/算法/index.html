@@ -149,6 +149,55 @@
 </nav>
       
   
+    <article id="post-max_sum" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/02/max_sum/" class="article-date">
+  	<time datetime="2015-07-02T15:53:22.000Z" itemprop="datePublished">7月 2 2015</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/剑指offer/">剑指offer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/牛客/">牛客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/02/max_sum/">【剑指offer】连续子数组的最大和</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天继续介绍一道动态规划的题目。先引用一段动态规划课程上的总结，来介绍一下动态规划的基本思路。<br>如果各个子问题不是独立的，不同的子问题的个数只是多项式量级，如果我们能够保存已经解决的子问题的答案，而在需要的时候再找出已求得的答案，这样就可以避免大量的重复计算。<br>由此而来的基本思路是——用一个表记录所有已解决的子问题的答案，不管该问题以后是否被用到，只要它被计算过，就将其结果填入表中。<br>其实简单来说，就是整体的最优解和子问题的最优解相关。但是和贪心算法不同的是，贪心算法，整体的最优解直接依赖于子问题的最优解，求出每个子问题的最优解即可；而动态规划追求的总体最优解并不是直接每个子问题的最优解，需要一定的转化。</p>
+<h2 id="连续子数组的最大和">连续子数组的最大和</h2>
+<p>HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。你会不会被他忽悠住？<br>
+        
+          <p class="article-more-link">
+            <a href="/2015/07/02/max_sum/#more">more >></a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-ugly_number" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">

@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【剑指offer】丑数 | Podongfeng</title>
+  <title>【剑指offer】连续子数组的最大和 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="丑数">
+  <meta name="description" content="连续子数组的最大和">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【剑指offer】丑数">
-<meta property="og:url" content="http://yoursite.com/2015/06/30/ugly_number/">
+<meta property="og:title" content="【剑指offer】连续子数组的最大和">
+<meta property="og:url" content="http://yoursite.com/2015/07/02/max_sum/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="丑数">
+<meta property="og:description" content="连续子数组的最大和">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【剑指offer】丑数">
-<meta name="twitter:description" content="丑数">
+<meta name="twitter:title" content="【剑指offer】连续子数组的最大和">
+<meta name="twitter:description" content="连续子数组的最大和">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -147,11 +147,11 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-ugly_number" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-max_sum" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/06/30/ugly_number/" class="article-date">
-  	<time datetime="2015-06-30T15:49:08.000Z" itemprop="datePublished">6月 30 2015</time>
+      <a href="/2015/07/02/max_sum/" class="article-date">
+  	<time datetime="2015-07-02T15:53:22.000Z" itemprop="datePublished">7月 2 2015</time>
 </a>
       
       
@@ -168,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【剑指offer】丑数
+      【剑指offer】连续子数组的最大和
     </h1>
   
 
@@ -176,13 +176,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天继续介绍一道打表的题目。打表是指，事先计算好一定范围内符合条件的值，然后再根据入参，判断是否存在于计算好的结果集里面。打表典型的应用场景是判断一个数是否为质数，特别适合每次判断消耗比较大，而时间计算的代价很小的情况。</p>
-<h2 id="丑数">丑数</h2>
-<p>把只包含因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。<br><a id="more"></a></p>
+        <p>今天继续介绍一道动态规划的题目。先引用一段动态规划课程上的总结，来介绍一下动态规划的基本思路。<br>如果各个子问题不是独立的，不同的子问题的个数只是多项式量级，如果我们能够保存已经解决的子问题的答案，而在需要的时候再找出已求得的答案，这样就可以避免大量的重复计算。<br>由此而来的基本思路是——用一个表记录所有已解决的子问题的答案，不管该问题以后是否被用到，只要它被计算过，就将其结果填入表中。<br>其实简单来说，就是整体的最优解和子问题的最优解相关。但是和贪心算法不同的是，贪心算法，整体的最优解直接依赖于子问题的最优解，求出每个子问题的最优解即可；而动态规划追求的总体最优解并不是直接每个子问题的最优解，需要一定的转化。</p>
+<h2 id="连续子数组的最大和">连续子数组的最大和</h2>
+<p>HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。你会不会被他忽悠住？<br><a id="more"></a></p>
 <h2 id="思路">思路</h2>
-<p>根据题意，其实最先想到的方法是，如果这个数可以被2整除，就除以2，一直到不能整除为止，这样，就把这个数中2这个因子全部剔除了，然后用相同的方法再处理3和5，如果最后的结果是1，那么可以判断出只含有因子2、3、5。但是这样每判断一个数的开销都比较大，我们很自然联想到判断质数时使用的打表的方法。<br>如果当前已经得到一个长度为n的从小到大排列的丑数列F(1),F(2)…F(n);那么可以肯定的是，F(n+1)的值是这个数列中的某个值x2或者某个值x3或者某个值x5。用数学公式表达：F(n+1) = min(2xF(a),3xF(b),5xF(c))[a&lt;=n,b&lt;=n,c&lt;=n].<br>由于目前的数列是按照从小到大的顺序排列的，所以只要求出第一个大于F(n)的2xF(a),3xF(b),5xF(c)，然后取得其中最小的值就可以了。<br>又已知F(1)=1，我们就按照这个思路事先求出了一定范围定所有的丑数。</p>
+<p>要求出连续子序列的最大和，可以这样考虑：这个子序列的结束元素必然是目前序列中的一个元素，如果求出以序列中每个元素为结束元素的自序列的最大和，然后再比较这n个和，那么应该可以得到答案。这样，我们就把问题转化为了以第n个元素为结束元素时，子序列的最大和。我们把以第n-1个元素为结束元素的最大自序列和值记为F(n-1)，那么，如果F(n-1)&lt;0，F（n）=A(n)，否则，F（n）=F(n-1) + A(n)。<br>有了上面的分析，我们就根据这个来写出代码：</p>
 <h2 id="代码">代码</h2>
-<figure class="highlight bash"><pre><div class="line">public class Solution {</div><div class="line">    public int GetUglyNumber_Solution(int index) {</div><div class="line">        <span class="keyword">if</span>(index == <span class="number">0</span>) {</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        }</div><div class="line">        int[] array = new int[<span class="number">10000</span>];</div><div class="line">        array[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">        int count = <span class="number">1</span>;</div><div class="line">        <span class="keyword">for</span> (int i = <span class="number">1</span>; i &lt; <span class="number">10000</span>; i++) {</div><div class="line">            int a = <span class="number">0</span>;</div><div class="line">            int b = <span class="number">0</span>;</div><div class="line">            int c = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span> (int j = <span class="number">0</span>; j &lt; count; j++) {</div><div class="line">                <span class="keyword">if</span> (array[j] * <span class="number">2</span> &gt; array[i - <span class="number">1</span>]) {</div><div class="line">                    a = array[j] * <span class="number">2</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                }</div><div class="line">            }</div><div class="line">            <span class="keyword">for</span> (int j = <span class="number">0</span>; j &lt; count; j++) {</div><div class="line">                <span class="keyword">if</span> (array[j] * <span class="number">3</span> &gt; array[i - <span class="number">1</span>]) {</div><div class="line">                    b = array[j] * <span class="number">3</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                }</div><div class="line">            }</div><div class="line">            <span class="keyword">for</span> (int j = <span class="number">0</span>; j &lt; count; j++) {</div><div class="line">                <span class="keyword">if</span> (array[j] * <span class="number">5</span> &gt; array[i - <span class="number">1</span>]) {</div><div class="line">                    c = array[j] * <span class="number">5</span>;</div><div class="line">                    <span class="keyword">break</span>;</div><div class="line">                }</div><div class="line">            }</div><div class="line">            array[i] = getM<span class="keyword">in</span>(a, b, c);</div><div class="line">            count++;</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> array[index - <span class="number">1</span>];</div><div class="line">    }</div><div class="line">     </div><div class="line">    public static int getM<span class="keyword">in</span>(int a, int b) {</div><div class="line">        <span class="keyword">if</span> (a &lt; b) {</div><div class="line">            <span class="keyword">return</span> a;</div><div class="line">        } <span class="keyword">else</span> {</div><div class="line">            <span class="keyword">return</span> b;</div><div class="line">        }</div><div class="line">    }</div><div class="line"> </div><div class="line">    public static int getM<span class="keyword">in</span>(int a, int b, int c) {</div><div class="line">        <span class="keyword">return</span> getM<span class="keyword">in</span>(getM<span class="keyword">in</span>(a, b), c);</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+<figure class="highlight bash"><pre><div class="line">public class Solution {</div><div class="line">    public int FindGreatestSumOfSubArray(int[] array) {</div><div class="line">        <span class="keyword">if</span>(array==null || array.length&lt;<span class="number">1</span>) {</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        }</div><div class="line">        int length = array.length;</div><div class="line">        int maxSum = -<span class="number">2147483647</span> - <span class="number">1</span>;</div><div class="line">        int maxHere = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; length; i++) {</div><div class="line">            <span class="keyword">if</span> (maxHere &lt; <span class="number">0</span>) {</div><div class="line">                maxHere = array[i];</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                maxHere += array[i];</div><div class="line">            }</div><div class="line">            <span class="keyword">if</span> (maxHere &gt; maxSum) {</div><div class="line">                maxSum = maxHere;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> maxSum;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
 
 
       
@@ -192,18 +192,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/07/02/max_sum/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          【剑指offer】连续子数组的最大和
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/06/29/2x1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【剑指offer】矩形覆盖</div>
+    <a href="/2015/06/30/ugly_number/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【剑指offer】丑数</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -232,7 +223,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="ugly_number" data-title="【剑指offer】丑数" data-url="http://yoursite.com/2015/06/30/ugly_number/"></div>
+	<div class="ds-thread" data-thread-key="max_sum" data-title="【剑指offer】连续子数组的最大和" data-url="http://yoursite.com/2015/07/02/max_sum/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
