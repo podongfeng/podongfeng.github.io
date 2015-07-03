@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【剑指offer】连续子数组的最大和 | Podongfeng</title>
+  <title>【剑指offer】二维数组中的查找 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="连续子数组的最大和">
+  <meta name="description" content="二维数组中的查找">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【剑指offer】连续子数组的最大和">
-<meta property="og:url" content="http://yoursite.com/2015/07/02/max_sum/">
+<meta property="og:title" content="【剑指offer】二维数组中的查找">
+<meta property="og:url" content="http://yoursite.com/2015/07/03/find_number_in_matrix/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="连续子数组的最大和">
+<meta property="og:description" content="二维数组中的查找">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【剑指offer】连续子数组的最大和">
-<meta name="twitter:description" content="连续子数组的最大和">
+<meta name="twitter:title" content="【剑指offer】二维数组中的查找">
+<meta name="twitter:description" content="二维数组中的查找">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -147,11 +147,11 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-max_sum" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-find_number_in_matrix" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/02/max_sum/" class="article-date">
-  	<time datetime="2015-07-02T15:53:22.000Z" itemprop="datePublished">7月 2 2015</time>
+      <a href="/2015/07/03/find_number_in_matrix/" class="article-date">
+  	<time datetime="2015-07-03T15:46:35.000Z" itemprop="datePublished">7月 3 2015</time>
 </a>
       
       
@@ -168,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【剑指offer】连续子数组的最大和
+      【剑指offer】二维数组中的查找
     </h1>
   
 
@@ -176,13 +176,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天继续介绍一道动态规划的题目。先引用一段动态规划课程上的总结，来介绍一下动态规划的基本思路。<br>如果各个子问题不是独立的，不同的子问题的个数只是多项式量级，如果我们能够保存已经解决的子问题的答案，而在需要的时候再找出已求得的答案，这样就可以避免大量的重复计算。<br>由此而来的基本思路是——用一个表记录所有已解决的子问题的答案，不管该问题以后是否被用到，只要它被计算过，就将其结果填入表中。<br>其实简单来说，就是整体的最优解和子问题的最优解相关。但是和贪心算法不同的是，贪心算法，整体的最优解直接依赖于子问题的最优解，求出每个子问题的最优解即可；而动态规划追求的总体最优解并不是直接每个子问题的最优解，需要一定的转化。</p>
-<h2 id="连续子数组的最大和">连续子数组的最大和</h2>
-<p>HZ偶尔会拿些专业问题来忽悠那些非计算机专业的同学。今天测试组开完会后,他又发话了:在古老的一维模式识别中,常常需要计算连续子向量的最大和,当向量全为正数的时候,问题很好解决。但是,如果向量中包含负数,是否应该包含某个负数,并期望旁边的正数会弥补它呢？例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。你会不会被他忽悠住？<br><a id="more"></a></p>
+        <p>今天继续介绍的题目我也不知道应该归结为哪一类，暂且就放到递归吧。</p>
+<h2 id="二维数组中的查找">二维数组中的查找</h2>
+<p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。<br><a id="more"></a></p>
 <h2 id="思路">思路</h2>
-<p>要求出连续子序列的最大和，可以这样考虑：这个子序列的结束元素必然是目前序列中的一个元素，如果求出以序列中每个元素为结束元素的自序列的最大和，然后再比较这n个和，那么应该可以得到答案。这样，我们就把问题转化为了以第n个元素为结束元素时，子序列的最大和。我们把以第n-1个元素为结束元素的最大自序列和值记为F(n-1)，那么，如果F(n-1)&lt;0，F（n）=A(n)，否则，F（n）=F(n-1) + A(n)。<br>有了上面的分析，我们就根据这个来写出代码：</p>
+<p>其实一看到这种在有序数组中查找元素的，第一个想到的是二分法。不过这题稍稍有点不同，这里是一个二维数组。其实也可以使用二分法来解决，不过我们还有另外一种思路。<br>这个有序的二维数组可以看作一个 mxn 的矩阵，考虑最左下角的一个数A（m-1，0）。如果目标T数等于A（m-1，0），那么我们就直接找到了；如果目标数大于A（m-1，0），那么A（0，0）到A（m-2，0）这一列的数都小于A（m-1，0），而T大于A（m-1，0），所以这一列就排除了，可以从剩下的的 mx（n-1）的矩阵中继续查找；如果T小于A（m-1，0），由于A（m-1，1）到A（m-1，n—1）这一行的数都小于A（m-1，0），所以这一行可以被排序。从剩下的（m-1）xn的矩阵中据需查找。<br>这样，我们每次都是对于矩阵最左下角的一个数，每次都可以排除一行或者一列，递归下去查找，直到矩阵只剩下一行一列的时候，就肯定可以判断出是否能找到目标数T。</p>
 <h2 id="代码">代码</h2>
-<figure class="highlight bash"><pre><div class="line">public class Solution {</div><div class="line">    public int FindGreatestSumOfSubArray(int[] array) {</div><div class="line">        <span class="keyword">if</span>(array==null || array.length&lt;<span class="number">1</span>) {</div><div class="line">            <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">        }</div><div class="line">        int length = array.length;</div><div class="line">        int maxSum = -<span class="number">2147483647</span> - <span class="number">1</span>;</div><div class="line">        int maxHere = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span> (int i = <span class="number">0</span>; i &lt; length; i++) {</div><div class="line">            <span class="keyword">if</span> (maxHere &lt; <span class="number">0</span>) {</div><div class="line">                maxHere = array[i];</div><div class="line">            } <span class="keyword">else</span> {</div><div class="line">                maxHere += array[i];</div><div class="line">            }</div><div class="line">            <span class="keyword">if</span> (maxHere &gt; maxSum) {</div><div class="line">                maxSum = maxHere;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> maxSum;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
+<figure class="highlight bash"><pre><div class="line">public class Solution {</div><div class="line">    public boolean Find(int [][] array,int target) {</div><div class="line">        int rows = array.length;</div><div class="line">        int cols = array[<span class="number">0</span>].length;</div><div class="line">        <span class="keyword">for</span> (int i = rows - <span class="number">1</span>, j = <span class="number">0</span>; i &gt;= <span class="number">0</span> && j &lt; cols;) {</div><div class="line">            <span class="keyword">if</span> (array[i][j] == target) {</div><div class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> (array[i][j] &lt; target) {</div><div class="line">                j++;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            } <span class="keyword">else</span> <span class="keyword">if</span> (array[i][j] &gt; target) {</div><div class="line">                i--;</div><div class="line">                <span class="keyword">continue</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">    }</div><div class="line">}</div></pre></figure>
 
 
       
@@ -192,18 +192,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/07/03/find_number_in_matrix/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          【剑指offer】二维数组中的查找
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/06/30/ugly_number/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【剑指offer】丑数</div>
+    <a href="/2015/07/02/max_sum/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【剑指offer】连续子数组的最大和</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -232,7 +223,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="max_sum" data-title="【剑指offer】连续子数组的最大和" data-url="http://yoursite.com/2015/07/02/max_sum/"></div>
+	<div class="ds-thread" data-thread-key="find_number_in_matrix" data-title="【剑指offer】二维数组中的查找" data-url="http://yoursite.com/2015/07/03/find_number_in_matrix/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

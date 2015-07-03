@@ -149,6 +149,65 @@
 </nav>
       
   
+    <article id="post-android_SharedPreferences" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/05/28/android_SharedPreferences/" class="article-date">
+  	<time datetime="2015-05-28T15:49:36.000Z" itemprop="datePublished">5月 28 2015</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SharedPreferences初步/">SharedPreferences初步</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/28/android_SharedPreferences/">初探SharedPreferences</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/android.jpg" alt="android"><br>android开发中，可能需要持久化少量的数据，譬如说一些用户设置的数据，用数据库就有点杀鸡用牛刀了，这时候可以尝试使用SharedPreferences。SharedPreferences是一种轻量级的存储数据的方式，使用xml文件来进行键值对方式的存储，而且使用起来非常轻量和快捷。</p>
+<p>得到SharedPreferences：</p>
+<figure class="highlight bash"><pre><div class="line">SharedPreferences sharedPreferences = </div><div class="line">getSharedPreferences(<span class="string">"usable_sharedPreferences"</span>, Context.MODE_PRIVATE);</div></pre></figure>
+
+<p>SharedPreferences使用一个内部类SharedPreferences.Editor来对数据进行编辑</p>
+<p>得到edit：</p>
+<figure class="highlight bash"><pre><div class="line">SharedPreferences.Editor editor = sharedPreferences.edit();</div></pre></figure>
+
+<p>提交数据：</p>
+<figure class="highlight bash"><pre><div class="line">editor.putString(key, value);</div><div class="line">editor.commit();</div></pre></figure>
+
+<p>查询数据：</p>
+<figure class="highlight bash"><pre><div class="line">String value = sharedPreferences.getString(key, </div><div class="line"><span class="string">"没有找到键："</span> + key + <span class="string">" 对应的值，请检查输入的键！"</span>);</div></pre></figure>
+
+<p>清空数据：</p>
+<figure class="highlight bash"><pre><div class="line">editor.clear().commit();</div></pre></figure>
+
+
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-java_override" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -582,53 +641,6 @@
         
           <p class="article-more-link">
             <a href="/2015/02/21/hello_new_post/#more">more >></a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-hexo_config" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/20/hexo_config/" class="article-date">
-  	<time datetime="2015-02-20T12:51:20.000Z" itemprop="datePublished">2月 20 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/使用hexo搭建博客/">使用hexo搭建博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/20/hexo_config/">【使用hexo搭建博客（二）】Hexo config</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>接着上一篇，我们目前在本地把Hexo成功运行起来了，但是还都是默认的配置，并不是我们自己的博客，接下来我们来做一些个性化的配置。<br>在hexo目录（主目录）下，找到_config.yml文件，如下图所示：<br><img src="http://7vzpo6.com1.z0.glb.clouddn.com/main_config_hexo_dir.png" alt="hexo目录下_config.yml文件"><br>用你自己最喜欢的文本编辑工具打开_config.yml文件，根据你自己的需要，修改这几个属性：<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/02/20/hexo_config/#more">more >></a>
           </p>
         
       

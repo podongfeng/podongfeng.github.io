@@ -149,6 +149,55 @@
 </nav>
       
   
+    <article id="post-find_number_in_matrix" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/03/find_number_in_matrix/" class="article-date">
+  	<time datetime="2015-07-03T15:46:35.000Z" itemprop="datePublished">7月 3 2015</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/剑指offer/">剑指offer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/牛客/">牛客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/03/find_number_in_matrix/">【剑指offer】二维数组中的查找</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天继续介绍的题目我也不知道应该归结为哪一类，暂且就放到递归吧。</p>
+<h2 id="二维数组中的查找">二维数组中的查找</h2>
+<p>在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。<br>
+        
+          <p class="article-more-link">
+            <a href="/2015/07/03/find_number_in_matrix/#more">more >></a>
+          </p>
+        
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
     <article id="post-max_sum" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -576,65 +625,6 @@
             <a href="/2015/06/24/odd_before_even/#more">more >></a>
           </p>
         
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-android_SharedPreferences" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/05/28/android_SharedPreferences/" class="article-date">
-  	<time datetime="2015-05-28T15:49:36.000Z" itemprop="datePublished">5月 28 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SharedPreferences初步/">SharedPreferences初步</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/28/android_SharedPreferences/">初探SharedPreferences</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://7vzpo6.com1.z0.glb.clouddn.com/android.jpg" alt="android"><br>android开发中，可能需要持久化少量的数据，譬如说一些用户设置的数据，用数据库就有点杀鸡用牛刀了，这时候可以尝试使用SharedPreferences。SharedPreferences是一种轻量级的存储数据的方式，使用xml文件来进行键值对方式的存储，而且使用起来非常轻量和快捷。</p>
-<p>得到SharedPreferences：</p>
-<figure class="highlight bash"><pre><div class="line">SharedPreferences sharedPreferences = </div><div class="line">getSharedPreferences(<span class="string">"usable_sharedPreferences"</span>, Context.MODE_PRIVATE);</div></pre></figure>
-
-<p>SharedPreferences使用一个内部类SharedPreferences.Editor来对数据进行编辑</p>
-<p>得到edit：</p>
-<figure class="highlight bash"><pre><div class="line">SharedPreferences.Editor editor = sharedPreferences.edit();</div></pre></figure>
-
-<p>提交数据：</p>
-<figure class="highlight bash"><pre><div class="line">editor.putString(key, value);</div><div class="line">editor.commit();</div></pre></figure>
-
-<p>查询数据：</p>
-<figure class="highlight bash"><pre><div class="line">String value = sharedPreferences.getString(key, </div><div class="line"><span class="string">"没有找到键："</span> + key + <span class="string">" 对应的值，请检查输入的键！"</span>);</div></pre></figure>
-
-<p>清空数据：</p>
-<figure class="highlight bash"><pre><div class="line">editor.clear().commit();</div></pre></figure>
-
-
       
     </div>
   </div>
