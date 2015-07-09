@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: 技术 | Podongfeng</title>
+  <title>【计蒜客】单独的数字 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="任何伟大的思想和成就，都有一个微不足道的开始">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Podongfeng">
-<meta property="og:url" content="http://yoursite.com/tags/技术/page/3/">
+  <meta name="description" content="单独的数字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【计蒜客】单独的数字">
+<meta property="og:url" content="http://yoursite.com/2015/07/09/single_num/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="任何伟大的思想和成就，都有一个微不足道的开始">
+<meta property="og:description" content="单独的数字">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Podongfeng">
-<meta name="twitter:description" content="任何伟大的思想和成就，都有一个微不足道的开始">
+<meta name="twitter:title" content="【计蒜客】单独的数字">
+<meta name="twitter:description" content="单独的数字">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -147,17 +147,15 @@
 		</header>				
 	</div>
 </nav>
-      
-  
-    <article id="post-hello_new_post" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-single_num" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/02/21/hello_new_post/" class="article-date">
-  	<time datetime="2015-02-21T07:55:12.000Z" itemprop="datePublished">2月 21 2015</time>
+      <a href="/2015/07/09/single_num/" class="article-date">
+  	<time datetime="2015-07-09T15:31:10.000Z" itemprop="datePublished">7月 9 2015</time>
 </a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/使用hexo搭建博客/">使用hexo搭建博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/计蒜客/">计蒜客</a></li></ul>
 
     </div>
   
@@ -169,8 +167,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/21/hello_new_post/">【使用hexo搭建博客（三）】发布新文章</a>
+    <h1 class="article-title" itemprop="name">
+      【计蒜客】单独的数字
     </h1>
   
 
@@ -178,127 +176,72 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们在上一篇做了一些基本的配置，今天讲一下怎么发布新文章。<br>还是到hexo的主目录中，然后右键Git Bash:</p>
-<figure class="highlight bash"><pre><div class="line">$ hexo new <span class="string">"my first blog"</span></div></pre></figure>
+        <p>今天继续介绍一道位运算的题目。</p>
+<h2 id="单独的数字">单独的数字</h2>
+<p>给定一个数组，除了一个数出现1次之外，其余数都出现3次。找出出现一次的数。<br>如：{1, 2, 1, 2, 1, 2, 7}, 找出7.<br>格式：<br>   第一行输入一个数n，代表数组的长度，接下来一行输入数组A[n],(输入的数组必须满足问题描述的要求),最后输出只出现一次的数。<br>要求：<br>   你的算法只能是线性时间的复杂度，并且不能使用额外的空间哦～<br><a id="more"></a></p>
+<h2 id="思路">思路</h2>
+<p>首先这题很容易联想到另外一题，也是找出当初的数，不同的是，另外一题中其他数都是出现2次，所以使用异或运算后，对于二进制每一位，相同的数就被消除了，得到了单独的数字。<br>但是，这题中其他数字是出现3次的。不过我们还是可以从前面的解法得到启发，使用二进制的位运算，既然其他每次数都出现3次，那么如果针对每一位求和并对3取余，那么那些出现3次的数字在这一位的和对3取余后肯定是0，其实就是单独的那个数在这一位上的结果。<br>所以，针对32位的整数，我们只要求出二进制的每一位的和对3取余，就是单独的数的二进制，再转化成10进制，就是我们需要的答案。</p>
+<h2 id="代码">代码</h2>
+<figure class="highlight bash"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line">int <span class="function"><span class="title">main</span></span>(){</div><div class="line">	int sum[<span class="number">32</span>], n, a;</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++){</div><div class="line">		sum[i] = <span class="number">0</span>;</div><div class="line">	}</div><div class="line">	scanf(<span class="string">"%d"</span>, &n);</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;n; i++){</div><div class="line">		scanf(<span class="string">"%d"</span>, &a);</div><div class="line">		<span class="keyword">for</span>(int j=<span class="number">0</span>; j&lt;<span class="number">32</span>; j++){</div><div class="line">			sum[j]+=a&gt;&gt;j&<span class="number">1</span>;</div><div class="line">			sum[j]%=<span class="number">3</span>;</div><div class="line">		}</div><div class="line">	}</div><div class="line">	int ans = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++){</div><div class="line">		ans += sum[i]&lt;&lt;i;</div><div class="line">	}</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</div><div class="line">}</div></pre></figure>
 
-<p>这样，就创建了一篇新的博文，可以在hexo主目录\source_posts目录下找到对应的.md文件。<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/02/21/hello_new_post/#more">more >></a>
-          </p>
-        
+
       
     </div>
   </div>
   
-</article>
-
-
-
-
-
-
-  
-    <article id="post-hexo_config" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/20/hexo_config/" class="article-date">
-  	<time datetime="2015-02-20T12:51:20.000Z" itemprop="datePublished">2月 20 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/使用hexo搭建博客/">使用hexo搭建博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/20/hexo_config/">【使用hexo搭建博客（二）】Hexo config</a>
-    </h1>
   
+    <a href="/2015/07/06/min_k/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【剑指offer】最小的K个数</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>接着上一篇，我们目前在本地把Hexo成功运行起来了，但是还都是默认的配置，并不是我们自己的博客，接下来我们来做一些个性化的配置。<br>在hexo目录（主目录）下，找到_config.yml文件，如下图所示：<br><img src="http://7vzpo6.com1.z0.glb.clouddn.com/main_config_hexo_dir.png" alt="hexo目录下_config.yml文件"><br>用你自己最喜欢的文本编辑工具打开_config.yml文件，根据你自己的需要，修改这几个属性：<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/02/20/hexo_config/#more">more >></a>
-          </p>
-        
-      
-    </div>
-  </div>
   
 </article>
 
 
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
 
 
 
-
-  
-    <article id="post-hello_hexo" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/02/19/hello_hexo/" class="article-date">
-  	<time datetime="2015-02-19T08:32:28.000Z" itemprop="datePublished">2月 19 2015</time>
-</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/使用hexo搭建博客/">使用hexo搭建博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/19/hello_hexo/">【使用hexo搭建博客（一）】Hello Hexo</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天是羊年大年初一。<br>昨天还跟小伙伴说新年要开始写一点技术博客，今天下午利用难得的休闲时光，就在网上找了找博客的框架。本来是想用wordpress的，都看了一些教程了，偶然发现了这个东西——hexo，简单看了一下介绍，发现hexo更加符合我的需求。<br>下面是<a href="http://hexo.io/" target="_blank" rel="external">hexo官网</a>介绍：<br>A fast, simple &amp; powerful blog framework, powered by Node.js.<br>官网的页面和风格和这个介绍同样简洁，感觉也蛮符合现在的趋势。</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2015/02/19/hello_hexo/#more">more >></a>
-          </p>
-        
-      
-    </div>
-  </div>
-  
-</article>
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="single_num" data-title="【计蒜客】单独的数字" data-url="http://yoursite.com/2015/07/09/single_num/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
 
 
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/技术/page/2/">&laquo; Prev</a><a class="page-number" href="/tags/技术/">1</a><a class="page-number" href="/tags/技术/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
-  
 
       <footer id="footer">
   <div class="outer">
