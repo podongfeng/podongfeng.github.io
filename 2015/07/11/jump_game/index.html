@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【计蒜客】单独的数字 | Podongfeng</title>
+  <title>【计蒜客】跳跃游戏 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="单独的数字">
+  <meta name="description" content="跳跃游戏">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【计蒜客】单独的数字">
-<meta property="og:url" content="http://yoursite.com/2015/07/09/single_num/">
+<meta property="og:title" content="【计蒜客】跳跃游戏">
+<meta property="og:url" content="http://yoursite.com/2015/07/11/jump_game/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="单独的数字">
+<meta property="og:description" content="跳跃游戏">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【计蒜客】单独的数字">
-<meta name="twitter:description" content="单独的数字">
+<meta name="twitter:title" content="【计蒜客】跳跃游戏">
+<meta name="twitter:description" content="跳跃游戏">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -147,11 +147,11 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-single_num" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-jump_game" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/09/single_num/" class="article-date">
-  	<time datetime="2015-07-09T15:31:10.000Z" itemprop="datePublished">7月 9 2015</time>
+      <a href="/2015/07/11/jump_game/" class="article-date">
+  	<time datetime="2015-07-11T12:02:57.000Z" itemprop="datePublished">7月 11 2015</time>
 </a>
       
       
@@ -168,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【计蒜客】单独的数字
+      【计蒜客】跳跃游戏
     </h1>
   
 
@@ -176,13 +176,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天继续介绍一道位运算的题目。</p>
-<h2 id="单独的数字">单独的数字</h2>
-<p>给定一个数组，除了一个数出现1次之外，其余数都出现3次。找出出现一次的数。<br>如：{1, 2, 1, 2, 1, 2, 7}, 找出7.<br>格式：<br>   第一行输入一个数n，代表数组的长度，接下来一行输入数组A[n],(输入的数组必须满足问题描述的要求),最后输出只出现一次的数。<br>要求：<br>   你的算法只能是线性时间的复杂度，并且不能使用额外的空间哦～<br><a id="more"></a></p>
+        <p>今天继续介绍2道贪心算法的题目。</p>
+<h2 id="跳跃游戏">跳跃游戏</h2>
+<p>给定一个非负整数数组，假定你的初始位置为数组第一个下标。<br>数组中的每个元素代表你在那个位置能够跳跃的最大长度。<br>请确认你是否能够跳跃到数组的最后一个下标。<br>例如：<br>A = [2,3,1,1,4],<br>return true.<br>A = [3,2,1,0,4],<br>return false.<br><a id="more"></a></p>
 <h2 id="思路">思路</h2>
-<p>首先这题很容易联想到另外一题，也是找出单独的数，不同的是，另外一题中其他数都是出现2次，所以使用异或运算后，对于二进制每一位，相同的数就被消除了，得到了单独的数字。<br>但是，这题中其他数字是出现3次的。不过我们还是可以从前面的解法得到启发，使用二进制的位运算，既然其他每次数都出现3次，那么如果针对每一位求和并对3取余，那么那些出现3次的数字在这一位的和对3取余后肯定是0，其实就是单独的那个数在这一位上的结果。<br>所以，针对32位的整数，我们只要求出二进制的每一位的和对3取余，就是单独的数的二进制，再转化成10进制，就是我们需要的答案。</p>
+<p>我们可以从后往前看：如果要到达最后1个元素，可以先考虑倒数第2个元素，如果从倒数第2个元素可以到达最后1个元素，那么我们的问题就变成了一个len-1长度数组的问题。<br>根据上面简单的思考，我们的方法是这样的，用一个指针min记录可以到达最后1个元素的最小下标，初始的时候，min=len-1;从倒数第2个元素开始向前遍历，如果下标i+num[i]&gt;min,证明从下标为i的元素可以到达最后1个元素（通过min指向的元素），这时我们就把min指向i,只要可以打到i，就可以到达最后一个元素。等到遍历完成的时候，如果min指向了第1个元素，那么就是可以到达，不然就是不可到达。</p>
 <h2 id="代码">代码</h2>
-<figure class="highlight bash"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line">int <span class="function"><span class="title">main</span></span>(){</div><div class="line">	int sum[<span class="number">32</span>], n, a;</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++){</div><div class="line">		sum[i] = <span class="number">0</span>;</div><div class="line">	}</div><div class="line">	scanf(<span class="string">"%d"</span>, &n);</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;n; i++){</div><div class="line">		scanf(<span class="string">"%d"</span>, &a);</div><div class="line">		<span class="keyword">for</span>(int j=<span class="number">0</span>; j&lt;<span class="number">32</span>; j++){</div><div class="line">			sum[j]+=a&gt;&gt;j&<span class="number">1</span>;</div><div class="line">			sum[j]%=<span class="number">3</span>;</div><div class="line">		}</div><div class="line">	}</div><div class="line">	int ans = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;<span class="number">32</span>; i++){</div><div class="line">		ans += sum[i]&lt;&lt;i;</div><div class="line">	}</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</div><div class="line">}</div></pre></figure>
+<figure class="highlight bash"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line">int <span class="function"><span class="title">main</span></span>(){</div><div class="line">	int len, min, num[<span class="number">10000</span>];</div><div class="line">	scanf(<span class="string">"%d"</span>, &len);</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;len; i++) {</div><div class="line">		scanf(<span class="string">"%d"</span>, &num[i]);</div><div class="line">	}</div><div class="line">	min = len-<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(int i=len-<span class="number">2</span>; i&gt;=<span class="number">0</span>; i--){</div><div class="line">		<span class="keyword">if</span>(i+num[i]&gt;=min){</div><div class="line">			min = i;</div><div class="line">		}</div><div class="line">	}</div><div class="line">	<span class="keyword">if</span>(min==<span class="number">0</span>){</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"true\n"</span>);</div><div class="line">	} <span class="keyword">else</span> {</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"false\n"</span>);</div><div class="line">	}</div><div class="line">}</div></pre></figure>
+
+<p>然后我们来这一题的进阶版：<br>给定一个非负整数数组，假定你的初始位置为数组第一个下标。<br>数组中的每个元素代表你在那个位置能够跳跃的最大长度。<br>你的目标是到达最后一个下标，并且使用最少的跳跃次数。<br>例如：<br>A = [2,3,1,1,4], 到达最后一个下标的最少跳跃次数为2.（先跳跃1步，从下标0到1,然后跳跃3步，到达最后一个下标。一共两次）</p>
+<h2 id="思路-1">思路</h2>
+<p>跟上面的题目稍有不同，这次不只要可达，而且要用最少的跳跃次数。<br>这其实已经是动态规划的范畴了。新建一个长度为len的数组min，保存从当前位置跳跃到最后1个元素需要的最少次数，如果不能到达，记为-1。初始数组min全部为-1，当然，min[len-1]=0，到达自身不需要跳跃。<br>然后从后往前遍历，遍历到下标为i的时候，内部循环遍历i+1到i+num<a href="因为从i开始最多条min[i]距离">i</a>,取得从i开始跳跃1步达到的点，这些点需要满足min[j]&gt;=0，就是可达最后1个元素，然后选出其中最小的，那么min[i]就是这个最小值+1.</p>
+<h2 id="代码-1">代码</h2>
+<figure class="highlight bash"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line">int <span class="function"><span class="title">main</span></span>(){</div><div class="line">	int len, num[<span class="number">10000</span>], min[<span class="number">10000</span>];</div><div class="line">	scanf(<span class="string">"%d"</span>, &len);</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;len; i++){</div><div class="line">		scanf(<span class="string">"%d"</span>, &num[i]);</div><div class="line">		min[i] = -<span class="number">1</span>;</div><div class="line">	}</div><div class="line">	min[len-<span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(int i=len-<span class="number">2</span>; i&gt;=<span class="number">0</span>; i--){</div><div class="line">		<span class="keyword">for</span>(int j=<span class="number">1</span>; j&lt;=num[i]; j++){</div><div class="line">			<span class="keyword">if</span>(i+j&gt;len-<span class="number">1</span>){</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			}</div><div class="line">			<span class="keyword">if</span>(min[i+j]&gt;=<span class="number">0</span>){</div><div class="line">				<span class="keyword">if</span>(min[i]&lt;<span class="number">0</span>){</div><div class="line">					min[i] = min[i+j]+<span class="number">1</span>;</div><div class="line">				} <span class="keyword">else</span> <span class="keyword">if</span>(min[i]&gt;min[i+j]+<span class="number">1</span>) {</div><div class="line">					min[i] = min[i+j]+<span class="number">1</span>;</div><div class="line">				}</div><div class="line">			}</div><div class="line">		}</div><div class="line">	}</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, min[<span class="number">0</span>]);</div><div class="line">}</div></pre></figure>
 
 
       
@@ -192,18 +198,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/07/11/jump_game/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          【计蒜客】跳跃游戏
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/07/06/min_k/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【剑指offer】最小的K个数</div>
+    <a href="/2015/07/09/single_num/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【计蒜客】单独的数字</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -232,7 +229,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="single_num" data-title="【计蒜客】单独的数字" data-url="http://yoursite.com/2015/07/09/single_num/"></div>
+	<div class="ds-thread" data-thread-key="jump_game" data-title="【计蒜客】跳跃游戏" data-url="http://yoursite.com/2015/07/11/jump_game/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
