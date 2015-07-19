@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【计蒜客】跳跃游戏 | Podongfeng</title>
+  <title>【计蒜客】等和的分隔子集 | Podongfeng</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="跳跃游戏">
+  <meta name="description" content="等和的分隔子集">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【计蒜客】跳跃游戏">
-<meta property="og:url" content="http://yoursite.com/2015/07/11/jump_game/">
+<meta property="og:title" content="【计蒜客】等和的分隔子集">
+<meta property="og:url" content="http://yoursite.com/2015/07/19/half_set/">
 <meta property="og:site_name" content="Podongfeng">
-<meta property="og:description" content="跳跃游戏">
+<meta property="og:description" content="等和的分隔子集">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【计蒜客】跳跃游戏">
-<meta name="twitter:description" content="跳跃游戏">
+<meta name="twitter:title" content="【计蒜客】等和的分隔子集">
+<meta name="twitter:description" content="等和的分隔子集">
 
   
     <link rel="alternative" href="/atom.xml" title="Podongfeng" type="application/atom+xml">
@@ -147,11 +147,11 @@
 		</header>				
 	</div>
 </nav>
-      <article id="post-jump_game" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-half_set" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/07/11/jump_game/" class="article-date">
-  	<time datetime="2015-07-11T12:02:57.000Z" itemprop="datePublished">7月 11 2015</time>
+      <a href="/2015/07/19/half_set/" class="article-date">
+  	<time datetime="2015-07-19T08:58:33.000Z" itemprop="datePublished">7月 19 2015</time>
 </a>
       
       
@@ -168,7 +168,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      【计蒜客】跳跃游戏
+      【计蒜客】等和的分隔子集
     </h1>
   
 
@@ -176,20 +176,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天继续介绍2道贪心算法的题目。</p>
-<h2 id="跳跃游戏">跳跃游戏</h2>
-<p>给定一个非负整数数组，假定你的初始位置为数组第一个下标。<br>数组中的每个元素代表你在那个位置能够跳跃的最大长度。<br>请确认你是否能够跳跃到数组的最后一个下标。<br>例如：<br>A = [2,3,1,1,4],<br>return true.<br>A = [3,2,1,0,4],<br>return false.<br><a id="more"></a></p>
+        <p>今天介绍1道动态规划（dp）的题目。</p>
+<h2 id="等和的分隔子集">等和的分隔子集</h2>
+<p>晓萌希望将1到N的连续整数组成的集合划分成两个子集合，且保证每个集合的数字和是相等。例如，对于N=3，对应的集合{1，2，3}能被划分成{3} 和 {1,2}两个子集合.<br>这两个子集合中元素分别的和是相等的。<br>对于N=3，我们只有一种划分方法，而对于N=7时，我们将有4种划分的方案。<br>输入包括一行，仅一个整数，表示N的值（1≤N≤39）。<br>输出包括一行，仅一个整数，晓萌可以划分对应N的集合的方案的个数。当没发划分时，输出0。<br><a id="more"></a></p>
 <h2 id="思路">思路</h2>
-<p>我们可以从后往前看：如果要到达最后1个元素，可以先考虑倒数第2个元素，如果从倒数第2个元素可以到达最后1个元素，那么我们的问题就变成了一个len-1长度数组的问题。<br>根据上面简单的思考，我们的方法是这样的，用一个指针min记录可以到达最后1个元素的最小下标，初始的时候，min=len-1;从倒数第2个元素开始向前遍历，如果下标i+num[i]&gt;min,证明从下标为i的元素可以到达最后1个元素（通过min指向的元素），这时我们就把min指向i,只要可以打到i，就可以到达最后一个元素。等到遍历完成的时候，如果min指向了第1个元素，那么就是可以到达，不然就是不可到达。</p>
+<p>动态规划的核心是找到动态转移方程，我们开设一个二维数组f[i][j]，代表使用前i个数组成j的方案的个数，那么动态转移方程就是：</p>
+<figure class="highlight bash"><pre><div class="line">f[i][j]=f[i-<span class="number">1</span>][j]+f[i-<span class="number">1</span>][j-i]</div></pre></figure>
+
+<p>其实很类似于01背包，这一类问题在求解的过程中不需要保留路径，可以使用一个一维数组代替二维数组降维，只需要把内层的循环倒过来就可以。<br>按照题意，需要2个集合的和相等，那么总和必然需要是个偶数，先把总和是奇数的剪枝。</p>
 <h2 id="代码">代码</h2>
-<figure class="highlight bash"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line">int <span class="function"><span class="title">main</span></span>(){</div><div class="line">	int len, min, num[<span class="number">10000</span>];</div><div class="line">	scanf(<span class="string">"%d"</span>, &len);</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;len; i++) {</div><div class="line">		scanf(<span class="string">"%d"</span>, &num[i]);</div><div class="line">	}</div><div class="line">	min = len-<span class="number">1</span>;</div><div class="line">	<span class="keyword">for</span>(int i=len-<span class="number">2</span>; i&gt;=<span class="number">0</span>; i--){</div><div class="line">		<span class="keyword">if</span>(i+num[i]&gt;=min){</div><div class="line">			min = i;</div><div class="line">		}</div><div class="line">	}</div><div class="line">	<span class="keyword">if</span>(min==<span class="number">0</span>){</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"true\n"</span>);</div><div class="line">	} <span class="keyword">else</span> {</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"false\n"</span>);</div><div class="line">	}</div><div class="line">}</div></pre></figure>
+<figure class="highlight bash"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line">long long ans[<span class="number">10000</span>];</div><div class="line">int <span class="function"><span class="title">main</span></span>(){</div><div class="line">	int n, sum, half;</div><div class="line">	scanf(<span class="string">"%d"</span>, &n);</div><div class="line">	sum = n*(n+<span class="number">1</span>)/<span class="number">2</span>;</div><div class="line">	<span class="keyword">if</span>(sum%<span class="number">2</span>){</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"0"</span>);</div><div class="line">	} <span class="keyword">else</span> {</div><div class="line">		half = sum/<span class="number">2</span>;</div><div class="line">		ans[<span class="number">0</span>] = <span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span>(int i=<span class="number">1</span>; i&lt;=half; i++){</div><div class="line">			ans[i] = <span class="number">0</span>;</div><div class="line">		}</div><div class="line">		<span class="keyword">for</span>(int i=<span class="number">1</span>; i&lt;=n; i++){</div><div class="line">			<span class="keyword">for</span>(int j=half; j&gt;=i; j--){</div><div class="line">				ans[j] += ans[j-i];</div><div class="line">			}</div><div class="line">		}</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%lld"</span>, ans[half]/<span class="number">2</span>);</div><div class="line">	}</div><div class="line">}</div></pre></figure>
 
-<p>然后我们来这一题的进阶版：<br>给定一个非负整数数组，假定你的初始位置为数组第一个下标。<br>数组中的每个元素代表你在那个位置能够跳跃的最大长度。<br>你的目标是到达最后一个下标，并且使用最少的跳跃次数。<br>例如：<br>A = [2,3,1,1,4], 到达最后一个下标的最少跳跃次数为2.（先跳跃1步，从下标0到1,然后跳跃3步，到达最后一个下标。一共两次）</p>
-<h2 id="思路-1">思路</h2>
-<p>跟上面的题目稍有不同，这次不只要可达，而且要用最少的跳跃次数。<br>这其实已经是动态规划的范畴了。新建一个长度为len的数组min，保存从当前位置跳跃到最后1个元素需要的最少次数，如果不能到达，记为-1。初始数组min全部为-1，当然，min[len-1]=0，到达自身不需要跳跃。<br>然后从后往前遍历，遍历到下标为i的时候，内部循环遍历i+1到i+num<a href="因为从i开始最多条min[i]距离">i</a>,取得从i开始跳跃1次达到的点，这些点需要满足min[j]&gt;=0，就是可达最后1个元素，然后选出其中最小的，那么min[i]就是这个最小值+1.</p>
-<h2 id="代码-1">代码</h2>
-<figure class="highlight bash"><pre><div class="line"><span class="comment">#include&lt;stdio.h&gt;</span></div><div class="line">int <span class="function"><span class="title">main</span></span>(){</div><div class="line">	int len, num[<span class="number">10000</span>], min[<span class="number">10000</span>];</div><div class="line">	scanf(<span class="string">"%d"</span>, &len);</div><div class="line">	<span class="keyword">for</span>(int i=<span class="number">0</span>; i&lt;len; i++){</div><div class="line">		scanf(<span class="string">"%d"</span>, &num[i]);</div><div class="line">		min[i] = -<span class="number">1</span>;</div><div class="line">	}</div><div class="line">	min[len-<span class="number">1</span>] = <span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(int i=len-<span class="number">2</span>; i&gt;=<span class="number">0</span>; i--){</div><div class="line">		<span class="keyword">for</span>(int j=<span class="number">1</span>; j&lt;=num[i]; j++){</div><div class="line">			<span class="keyword">if</span>(i+j&gt;len-<span class="number">1</span>){</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			}</div><div class="line">			<span class="keyword">if</span>(min[i+j]&gt;=<span class="number">0</span>){</div><div class="line">				<span class="keyword">if</span>(min[i]&lt;<span class="number">0</span>){</div><div class="line">					min[i] = min[i+j]+<span class="number">1</span>;</div><div class="line">				} <span class="keyword">else</span> <span class="keyword">if</span>(min[i]&gt;min[i+j]+<span class="number">1</span>) {</div><div class="line">					min[i] = min[i+j]+<span class="number">1</span>;</div><div class="line">				}</div><div class="line">			}</div><div class="line">		}</div><div class="line">	}</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, min[<span class="number">0</span>]);</div><div class="line">}</div></pre></figure>
-
+<p>本题还有2点值得注意：<br>1、2个集合是对称的，所以最后方案的个数应该是f[i][j]/2；<br>2、计算的过程中可能超过int，需要用长整型。</p>
 
       
     </div>
@@ -198,18 +196,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/07/19/half_set/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">&lt;</strong>
-      <div class="article-nav-title">
-        
-          【计蒜客】等和的分隔子集
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/07/09/single_num/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【计蒜客】单独的数字</div>
+    <a href="/2015/07/11/jump_game/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【计蒜客】跳跃游戏</div>
       <strong class="article-nav-caption">&gt;</strong>
     </a>
   
@@ -238,7 +227,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="jump_game" data-title="【计蒜客】跳跃游戏" data-url="http://yoursite.com/2015/07/11/jump_game/"></div>
+	<div class="ds-thread" data-thread-key="half_set" data-title="【计蒜客】等和的分隔子集" data-url="http://yoursite.com/2015/07/19/half_set/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
